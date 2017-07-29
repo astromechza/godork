@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-go build -ldflags " \
+go build -o godork -ldflags " \
     -X \"main.Version=$(cat VERSION)\" \
     -X \"main.GitCommitSHA=$(git rev-parse --short HEAD)\" \
     -X \"main.GitCommitTime=$(git show -s --format=%cI HEAD)\" \
