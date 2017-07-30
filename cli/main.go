@@ -99,9 +99,11 @@ func mainInner() error {
 	case "json":
 		return OutputModeJSON(packageDoc, os.Stdout)
 	case "markdown":
-		return fmt.Errorf("output mode '%s' is not implemented", mode)
+		return OutputModeMarkdown(packageDoc, os.Stdout)
 	case "html":
-		return fmt.Errorf("output mode '%s' is not implemented", mode)
+		return fmt.Errorf("output mode 'html' is not implemented")
+	case "template":
+		return fmt.Errorf("output mode 'template' is not implemented")
 	default:
 		return fmt.Errorf("unknown output mode '%s' see --help", mode)
 	}
