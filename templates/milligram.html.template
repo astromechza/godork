@@ -21,6 +21,10 @@ body {
     white-space: pre;
 }
 
+.index-links ol {
+    margin: 1rem;
+}
+
 /* SPAN elements with the classes below are added by prettyprint. */
 .pln { color: #000 }  /* plain text */
 
@@ -73,8 +77,28 @@ body {
     <pre><code>{{ highlight_html .Code }}</code></pre>
 {{ end }}
 
+<h2>Index</h2>
+
+<ul class="index-links">
+    {{ if .Constants }}<ol><a href="#constants">Constants</a></ol>{{ end }}
+    {{ if .Variables }}<ol><a href="#variables">Variables</a></ol>{{ end }}
+    {{ range .Functions }}
+        <ol><a href="#f_{{ .Name }}">{{ .Signature }}</a></ol>
+    {{ end }}
+    {{ range .Types }}
+        <ol><a href="#t_{{ .Name }}">{{ .Name }}</a></ol>
+        {{ if .Methods }}
+            <ul>
+            {{ range .Methods }}
+                <ol><a href="#m_{{ .Name }}">{{ .Signature }}</a></ol>
+            {{ end }}
+            </ul>
+        {{ end }}
+    {{ end }}
+</ul>
+
 {{ if .Constants }}
-    <h2>Constants</h2>
+    <h2><a name="constants"/>Constants</h2>
     {{ range .Constants }}
         {{ if .Doc }}
             <div class="doc-paragraph">{{ to_html .Doc }}</div>
@@ -84,7 +108,7 @@ body {
 {{ end }}
 
 {{ if .Variables }}
-    <h2>Variables</h2>
+    <h2><a name="variables"/>Variables</h2>
     {{ range .Variables }}
         {{ if .Doc }}
             <div class="doc-paragraph">{{ to_html .Doc }}</div>
@@ -96,7 +120,7 @@ body {
 {{ if .Functions }}
     <h2>Functions</h2>
     {{ range .Functions }}
-        <h3><code>{{ highlight_html .Signature }}</code></h3>
+        <h3><a name="f_{{ .Name }}"/><code>{{ highlight_html .Signature }}</code></h3>
         {{ if .Doc }}
             <div class="doc-paragraph">{{ to_html .Doc }}</div>
         {{ end }}
@@ -113,7 +137,7 @@ body {
 {{ if .Types }}
     <h2>Types</h2>
     {{ range .Types }}
-        <h3><code>type {{ .Name }}</code></h3>
+        <h3><a name="t_{{ .Name }}"/><code>{{ .Name }}</code></h3>
         {{ if .Doc }}
             <div class="doc-paragraph">{{ to_html .Doc }}</div>
         {{ end }}
@@ -127,7 +151,7 @@ body {
         {{ end }}
 
         {{ range .Methods }}
-            <h4><code>{{ highlight_html .Signature }}</code></h4>
+            <h4><a name="m_{{ .Name }}"/><code>{{ highlight_html .Signature }}</code></h4>
             {{ if .Doc }}
                 <div class="doc-paragraph">{{ to_html .Doc }}</div>
             {{ end }}
