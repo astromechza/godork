@@ -5,6 +5,7 @@ import (
 	"fmt"
 	htmlt "html/template"
 	"io"
+	"io/ioutil"
 	"os"
 	textt "text/template"
 
@@ -32,16 +33,32 @@ func OutputModeTemplate(pkg *godork.PackageDoc, w io.Writer) error {
 		mk = "missingkey=default"
 	}
 
+	tcontent, err := ioutil.ReadFile(*templateFileFlag)
+	if err != nil {
+		return err
+	}
+
 	if *htmlModeFlag {
-		t, err := htmlt.ParseFiles(*templateFileFlag)
-		if err != nil {
-			return err
+		t := htmlt.New("")
+		t = t.Funcs(map[string]interface{}{
+			"to_text":        ToText,
+			"to_html":        ToHTML,
+			"highlight_html": HighlightHTML,
+		})
+		t, terr := t.Parse(string(tcontent))
+		if terr != nil {
+			return terr
 		}
 		return t.Option(mk).Execute(w, pkg)
 	}
-	t, err := textt.ParseFiles(*templateFileFlag)
-	if err != nil {
-		return err
+	t := textt.New("")
+	t = t.Funcs(map[string]interface{}{
+		"to_text": ToText,
+		"to_html": ToHTML,
+	})
+	t, terr := t.Parse(string(tcontent))
+	if terr != nil {
+		return terr
 	}
 	return t.Option(mk).Execute(w, pkg)
 }

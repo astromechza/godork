@@ -10,7 +10,7 @@ import "{{ .ImportPath }}"
 {{ range .Examples }}
 ### `{{ .FullName }}`
 
-{{ if .Doc }}{{ .Doc }}{{ end }}
+{{ if .Doc }}{{ to_text .Doc 120 }}{{ end }}
 ```golang
 {{ .Code }}
 ```

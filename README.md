@@ -23,12 +23,12 @@ This creates the `godork` binary.
 A quick example that generates markdown documentation for the package.
 
 ```bash
-$ godork template ./example github.com/AstromechZA/godork/example --template ./templates/markdown.md.template > example.md
+$ godork template ./example github.com/AstromechZA/godork/example --template templates/markdown.md.template > templates/markdown.example.md
 ```
 
 Markdown is not the best representation when compared to the official godoc stuff but it may be suitable in some places.
 So we can move onto using a simple html example:
 
 ```bash
-$ godork template ./example github.com/AstromechZA/godork/example --template ./templates/milligram.html.template --html-mode > example.html
+$ godork template ./example github.com/AstromechZA/godork/example --template templates/milligram.html.template --html-mode > templates/milligram.example.html
 ```

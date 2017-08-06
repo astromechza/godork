@@ -115,7 +115,15 @@ func BuildPackageDoc(importPath string, fset *token.FileSet, pkg *ast.Package) (
 		out.Variables = append(out.Variables, vv)
 	}
 
+FuncLoop:
 	for _, f := range docPkg.Funcs {
+
+		for _, eg := range examples {
+			if "Example"+eg.Name == f.Name {
+				continue FuncLoop
+			}
+		}
+
 		ff := &Function{
 			Name:      f.Name,
 			Doc:       f.Doc,

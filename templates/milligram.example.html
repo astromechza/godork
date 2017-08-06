@@ -1,0 +1,255 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Golang Package: example</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <style>
+body {
+    margin: 1rem;
+    padding: 1rem;
+}
+.container {
+    max-width: 120rem;
+}
+
+.doc-paragraph pre {
+    border-radius: 0;
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: pre;
+}
+
+ 
+.pln { color: #000 }   
+
+@media screen {
+  .str { color: #080 }   
+  .kwd { color: #008 }   
+  .com { color: #800 }   
+  .typ { color: #606 }   
+  .lit { color: #066 }   
+   
+  .pun, .opn, .clo { color: #660 }
+  .tag { color: #008 }   
+  .atn { color: #606 }   
+  .atv { color: #080 }   
+  .dec, .var { color: #606 }   
+  .fun { color: red }   
+}
+
+ 
+@media print, projection {
+  .str { color: #060 }
+  .kwd { color: #006; font-weight: bold }
+  .com { color: #600; font-style: italic }
+  .typ { color: #404; font-weight: bold }
+  .lit { color: #044 }
+  .pun, .opn, .clo { color: #440 }
+  .tag { color: #006; font-weight: bold }
+  .atn { color: #404 }
+  .atv { color: #060 }
+}
+
+    </style>
+</head>
+<body>
+
+<h1>Package <code>example</code></h1>
+
+<pre><code><span class="kwd">import</span> <span class="str">"github.com/AstromechZA/godork/example"</span>
+</code></pre>
+
+
+    <div class="doc-paragraph"><p>
+Package example is an example of various documentation abilities and edge cases.
+</p>
+<p>
+This is paragraph text in the middle of things.
+</p>
+<pre>here is some indented stuff
+</pre>
+<p>
+blurp.
+</p>
+</div>
+
+
+
+    <h3>Example <code>Example_of_stuff</code></h3>
+    
+        <div class="doc-paragraph"><p>
+Example_of_stuff shows an example of various random things.
+</p>
+</div>
+    
+    <pre><code><span class="kwd">package</span> <span class="pln">main</span>
+
+<span class="kwd">import</span> <span class="pun">(</span>
+	<span class="str">&#34;fmt&#34;</span>
+	<span class="str">&#34;github.com/AstromechZA/godork/example&#34;</span>
+<span class="pun">)</span>
+
+<span class="kwd">func</span> <span class="pln">main</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">{</span>
+	<span class="pln">fmt</span><span class="pun">.</span><span class="typ">Println</span><span class="pun">(</span><span class="pln">example</span><span class="pun">.</span><span class="typ">T0</span><span class="pun">,</span> <span class="pln">example</span><span class="pun">.</span><span class="typ">T1</span><span class="pun">,</span> <span class="pln">example</span><span class="pun">.</span><span class="typ">T2</span><span class="pun">)</span>
+<span class="pun">}</span>
+</code></pre>
+
+
+
+    <h2>Constants</h2>
+    
+        
+            <div class="doc-paragraph"><p>
+Numbered test constants
+</p>
+</div>
+        
+        <pre><code><span class="kwd">const</span> <span class="pun">(</span>
+	<span class="typ">T0</span>	<span class="kwd">int</span>	<span class="pun">=</span> <span class="pln">iota</span>
+	<span class="typ">T1</span>
+	<span class="typ">T2</span>
+<span class="pun">)</span></code></pre>
+    
+        
+            <div class="doc-paragraph"><p>
+Something is a test string used in various scenarios.
+</p>
+</div>
+        
+        <pre><code><span class="kwd">const</span> <span class="typ">Something</span> <span class="pun">=</span> <span class="str">&#34;word&#34;</span></code></pre>
+    
+
+
+
+    <h2>Variables</h2>
+    
+        
+            <div class="doc-paragraph"><p>
+Some other variables.
+</p>
+</div>
+        
+        <pre><code><span class="kwd">var</span> <span class="pun">(</span>
+	<span class="typ">Hi</span>	<span class="pun">=</span> <span class="str">&#34;Hello&#34;</span>
+	<span class="typ">Byte</span>	<span class="pun">=</span> <span class="str">&#34;Good bye&#34;</span>
+<span class="pun">)</span></code></pre>
+    
+        
+            <div class="doc-paragraph"><p>
+DefaultName is a mutable variable used to store a string used in various default scenarios when an override is
+not provided.
+</p>
+</div>
+        
+        <pre><code><span class="kwd">var</span> <span class="typ">DefaultName</span> <span class="pun">=</span> <span class="str">&#34;godork&#34;</span></code></pre>
+    
+
+
+
+    <h2>Functions</h2>
+    
+        <h3><code><span class="kwd">func</span> <span class="typ">CheckSync</span><span class="pun">(</span><span class="pln">s</span> <span class="pln">realsync</span><span class="pun">.</span><span class="typ">Locker</span><span class="pun">)</span></code></h3>
+        
+            <div class="doc-paragraph"><p>
+CheckSync locks and unlocks a lock
+</p>
+</div>
+        
+        
+    
+        <h3><code><span class="kwd">func</span> <span class="typ">GimmeBuffer</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">*</span><span class="pln">bytes</span><span class="pun">.</span><span class="typ">Buffer</span></code></h3>
+        
+            <div class="doc-paragraph"><p>
+GimmeBuffer gives you a bufferino
+</p>
+</div>
+        
+        
+    
+        <h3><code><span class="kwd">func</span> <span class="typ">TopLevelFunk</span><span class="pun">(</span><span class="pln">derp</span> <span class="kwd">int</span><span class="pun">,</span> <span class="pln">names</span> <span class="pun">.</span><span class="pun">.</span><span class="pun">.</span><span class="pln">string</span><span class="pun">)</span> <span class="pln">string</span></code></h3>
+        
+            <div class="doc-paragraph"><p>
+TopLevelFunk takes the args and does a thing with them!
+</p>
+</div>
+        
+        
+            <h4><code>ExampleTopLevelFunk</code></h4>
+            
+            <pre><code><span class="kwd">package</span> <span class="pln">main</span>
+
+<span class="kwd">import</span> <span class="pun">(</span>
+	<span class="str">&#34;github.com/AstromechZA/godork/example&#34;</span>
+<span class="pun">)</span>
+
+<span class="kwd">func</span> <span class="pln">main</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">{</span>
+	<span class="pln">example</span><span class="pun">.</span><span class="typ">TopLevelFunk</span><span class="pun">(</span><span class="dec">1</span><span class="pun">,</span> <span class="str">&#34;hi&#34;</span><span class="pun">)</span>
+<span class="pun">}</span>
+</code></pre>
+        
+    
+
+
+
+    <h2>Types</h2>
+    
+        <h3><code>type SomeType</code></h3>
+        
+            <div class="doc-paragraph"><p>
+SomeType is a struct holding the state of the example struct type.
+A bunch of content here
+</p>
+<pre>indent
+</pre>
+<p>
+stuff.
+</p>
+</div>
+        
+        <pre><code><span class="kwd">type</span> <span class="typ">SomeType</span> <span class="kwd">struct</span> <span class="pun">{</span>
+	<span class="com">// External is the verbleburble</span>
+	<span class="typ">External</span> <span class="kwd">int</span>
+	<span class="com">// contains filtered or unexported fields</span>
+<span class="pun">}</span></code></pre>
+        
+
+        
+            <h4><code><span class="kwd">func</span> <span class="pun">(</span><span class="pln">s</span> <span class="pun">*</span><span class="typ">SomeType</span><span class="pun">)</span> <span class="typ">PointerReceiver</span><span class="pun">(</span><span class="pln">y</span> <span class="kwd">int</span><span class="pun">)</span></code></h4>
+            
+                <div class="doc-paragraph"><p>
+PointerReceiver is an example of a method with a pointer rcvr
+</p>
+</div>
+            
+            
+                <h5><code>ExampleSomeType_PointerReceiver</code></h5>
+                
+                <pre><code><span class="kwd">package</span> <span class="pln">main</span>
+
+<span class="kwd">import</span> <span class="pun">(</span>
+	<span class="str">&#34;github.com/AstromechZA/godork/example&#34;</span>
+<span class="pun">)</span>
+
+<span class="kwd">func</span> <span class="pln">main</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">{</span>
+	<span class="pln">t</span> <span class="pun">:</span><span class="pun">=</span> <span class="pln">example</span><span class="pun">.</span><span class="typ">SomeType</span><span class="pun">{</span><span class="pun">}</span>
+	<span class="pln">t</span><span class="pun">.</span><span class="typ">PointerReceiver</span><span class="pun">(</span><span class="dec">1</span><span class="pun">)</span>
+<span class="pun">}</span>
+</code></pre>
+            
+        
+            <h4><code><span class="kwd">func</span> <span class="pun">(</span><span class="pln">s</span> <span class="typ">SomeType</span><span class="pun">)</span> <span class="typ">ValueReceiver</span><span class="pun">(</span><span class="pln">x</span> <span class="kwd">int</span><span class="pun">)</span></code></h4>
+            
+                <div class="doc-paragraph"><p>
+ValueReceiver is an example of a method with a value rcvr
+</p>
+</div>
+            
+            
+        
+    
+
+
+</body>
+</html>

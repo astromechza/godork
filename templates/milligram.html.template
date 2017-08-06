@@ -13,43 +13,73 @@ body {
 .container {
     max-width: 120rem;
 }
+
+.doc-paragraph pre {
+    border-radius: 0;
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: pre;
+}
+
+/* SPAN elements with the classes below are added by prettyprint. */
+.pln { color: #000 }  /* plain text */
+
+@media screen {
+  .str { color: #080 }  /* string content */
+  .kwd { color: #008 }  /* a keyword */
+  .com { color: #800 }  /* a comment */
+  .typ { color: #606 }  /* a type name */
+  .lit { color: #066 }  /* a literal value */
+  /* punctuation, lisp open bracket, lisp close bracket */
+  .pun, .opn, .clo { color: #660 }
+  .tag { color: #008 }  /* a markup tag name */
+  .atn { color: #606 }  /* a markup attribute name */
+  .atv { color: #080 }  /* a markup attribute value */
+  .dec, .var { color: #606 }  /* a declaration; a variable name */
+  .fun { color: red }  /* a function name */
+}
+
+/* Use higher contrast and text-weight for printable form. */
+@media print, projection {
+  .str { color: #060 }
+  .kwd { color: #006; font-weight: bold }
+  .com { color: #600; font-style: italic }
+  .typ { color: #404; font-weight: bold }
+  .lit { color: #044 }
+  .pun, .opn, .clo { color: #440 }
+  .tag { color: #006; font-weight: bold }
+  .atn { color: #404 }
+  .atv { color: #060 }
+}
+
     </style>
 </head>
 <body>
 
 <h1>Package <code>{{ .PackageName }}</code></h1>
 
-<pre><code>import "{{ .ImportPath }}"
+<pre><code><span class="kwd">import</span> <span class="str">"{{ .ImportPath }}"</span>
 </code></pre>
 
 {{ if .Doc }}
-    <p>
-    {{ .Doc }}
-    </p>
+    <div class="doc-paragraph">{{ to_html .Doc }}</div>
 {{ end }}
 
-{{ if .Examples }}
-    <h2>Examples</h2>
-    {{ range .Examples }}
-        <h3><code>{{ .FullName }}</code></h3>
-        {{ if .Doc }}
-            <p>
-            {{ .Doc }}
-            </p>
-        {{ end }}
-        <pre><code>{{ .Code }}</code></pre>
+{{ range .Examples }}
+    <h3>Example <code>{{ .FullName }}</code></h3>
+    {{ if .Doc }}
+        <div class="doc-paragraph">{{ to_html .Doc }}</div>
     {{ end }}
+    <pre><code>{{ highlight_html .Code }}</code></pre>
 {{ end }}
 
 {{ if .Constants }}
     <h2>Constants</h2>
     {{ range .Constants }}
         {{ if .Doc }}
-            <p>
-            {{ .Doc }}
-            </p>
+            <div class="doc-paragraph">{{ to_html .Doc }}</div>
         {{ end }}
-        <pre><code>{{ .Code }}</code></pre>
+        <pre><code>{{ highlight_html .Code }}</code></pre>
     {{ end }}
 {{ end }}
 
@@ -57,31 +87,25 @@ body {
     <h2>Variables</h2>
     {{ range .Variables }}
         {{ if .Doc }}
-            <p>
-            {{ .Doc }}
-            </p>
+            <div class="doc-paragraph">{{ to_html .Doc }}</div>
         {{ end }}
-        <pre><code>{{ .Code }}</code></pre>
+        <pre><code>{{ highlight_html .Code }}</code></pre>
     {{ end }}
 {{ end }}
 
 {{ if .Functions }}
     <h2>Functions</h2>
     {{ range .Functions }}
-        <h3><code>{{ .Signature }}</code></h3>
+        <h3><code>{{ highlight_html .Signature }}</code></h3>
         {{ if .Doc }}
-            <p>
-            {{ .Doc }}
-            </p>
+            <div class="doc-paragraph">{{ to_html .Doc }}</div>
         {{ end }}
         {{ range .Examples }}
             <h4><code>{{ .FullName }}</code></h4>
             {{ if .Doc }}
-                <p>
-                {{ .Doc }}
-                </p>
+                <div class="doc-paragraph">{{ to_html .Doc }}</div>
             {{ end }}
-            <pre><code>{{ .Code }}</code></pre>
+            <pre><code>{{ highlight_html .Code }}</code></pre>
         {{ end }}
     {{ end }}
 {{ end }}
@@ -89,38 +113,30 @@ body {
 {{ if .Types }}
     <h2>Types</h2>
     {{ range .Types }}
-        <h3><code>{{ .Name }}</code></h3>
+        <h3><code>type {{ .Name }}</code></h3>
         {{ if .Doc }}
-            <p>
-            {{ .Doc }}
-            </p>
+            <div class="doc-paragraph">{{ to_html .Doc }}</div>
         {{ end }}
-        <pre><code>{{ .Code }}</code></pre>
+        <pre><code>{{ highlight_html .Code }}</code></pre>
         {{ range .Examples }}
             <h4><code>{{ .FullName }}</code></h4>
             {{ if .Doc }}
-                <p>
-                {{ .Doc }}
-                </p>
+                <div class="doc-paragraph">{{ to_html .Doc }}</div>
             {{ end }}
-            <pre><code>{{ .Code }}</code></pre>
+            <pre><code>{{ highlight_html .Code }}</code></pre>
         {{ end }}
 
         {{ range .Methods }}
-            <h4><code>{{ .Signature }}</code></h4>
+            <h4><code>{{ highlight_html .Signature }}</code></h4>
             {{ if .Doc }}
-                <p>
-                {{ .Doc }}
-                </p>
+                <div class="doc-paragraph">{{ to_html .Doc }}</div>
             {{ end }}
             {{ range .Examples }}
                 <h5><code>{{ .FullName }}</code></h5>
                 {{ if .Doc }}
-                    <p>
-                    {{ .Doc }}
-                    </p>
+                  <div class="doc-paragraph">{{ to_html .Doc }}</div>
                 {{ end }}
-                <pre><code>{{ .Code }}</code></pre>
+                <pre><code>{{ highlight_html .Code }}</code></pre>
             {{ end }}
         {{ end }}
     {{ end }}
