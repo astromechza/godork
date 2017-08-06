@@ -9,6 +9,15 @@ api.
 - The `github.com/AstromechZA/godork/cli` binary which wraps all the functionality in a convenient binary.
 - A set of example and default templates in the `./templates` directory.
 
+## Examples
+
+An `example` package is provided that we use to test various features of this.
+
+The two templates that are provided result in the following:
+
+- `templates/milligram.html.template` -> [milligram.example.html](./templates/milligram.example.html)
+- `templates/markdown.md.template` -> [markdown.example.md](./templates/markdown.example.md)
+
 ## Build the binary
 
 ```bash
