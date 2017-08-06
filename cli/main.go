@@ -20,8 +20,11 @@ var GitCommitSHA = "unknown"
 var GitCommitTime = "1970-01-01T00:00:00Z"
 
 const usageString = `
-godork generates friendly html Golang package documentation along the lines of godoc but aimed at static interlinked
-html hosted in your own web server.
+godork generates friendly Golang package documentation along the lines of godoc but aimed at static interlinked
+documents hosted in your own web server.
+
+It purposefully doesn't embed any templates and instead relies on pre-distributed templates or user supplied ones. This
+is in order to keep the main functionality restricted and sensible.
 
 Usage:
 
@@ -30,8 +33,9 @@ $ godork [MODE] [SRC DIRECTORY] [IMPORT PATH] (options)
 Mode should be one of the following:
 
 	json 		Dump the package documentation data as JSON on stdout
-	markdown 	Print the documentation as a Markdown file
-	html 		Print the documentation as a HTML file
+	template    Interpret a Golang template
+
+The output will be written to stdout and errors to stderr.
 `
 
 func mainInner() error {
@@ -50,7 +54,7 @@ func mainInner() error {
 		os.Exit(1)
 	}
 
-	if len(os.Args) != 4 {
+	if len(os.Args) < 4 {
 		return fmt.Errorf("expected 3 positional arguments: [MODE] [SRC DIRECTORY] [IMPORT PATH] (options)")
 	}
 	mode := os.Args[1]
@@ -98,12 +102,8 @@ func mainInner() error {
 	switch mode {
 	case "json":
 		return OutputModeJSON(packageDoc, os.Stdout)
-	case "markdown":
-		return OutputModeMarkdown(packageDoc, os.Stdout)
-	case "html":
-		return fmt.Errorf("output mode 'html' is not implemented")
 	case "template":
-		return fmt.Errorf("output mode 'template' is not implemented")
+		return OutputModeTemplate(packageDoc, os.Stdout)
 	default:
 		return fmt.Errorf("unknown output mode '%s' see --help", mode)
 	}

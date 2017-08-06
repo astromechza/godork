@@ -1,0 +1,130 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <title>Golang Package: {{ .PackageName }}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <style>
+body {
+    margin: 1rem;
+    padding: 1rem;
+}
+.container {
+    max-width: 120rem;
+}
+    </style>
+</head>
+<body>
+
+<h1>Package <code>{{ .PackageName }}</code></h1>
+
+<pre><code>import "{{ .ImportPath }}"
+</code></pre>
+
+{{ if .Doc }}
+    <p>
+    {{ .Doc }}
+    </p>
+{{ end }}
+
+{{ if .Examples }}
+    <h2>Examples</h2>
+    {{ range .Examples }}
+        <h3><code>{{ .FullName }}</code></h3>
+        {{ if .Doc }}
+            <p>
+            {{ .Doc }}
+            </p>
+        {{ end }}
+        <pre><code>{{ .Code }}</code></pre>
+    {{ end }}
+{{ end }}
+
+{{ if .Constants }}
+    <h2>Constants</h2>
+    {{ range .Constants }}
+        {{ if .Doc }}
+            <p>
+            {{ .Doc }}
+            </p>
+        {{ end }}
+        <pre><code>{{ .Code }}</code></pre>
+    {{ end }}
+{{ end }}
+
+{{ if .Variables }}
+    <h2>Variables</h2>
+    {{ range .Variables }}
+        {{ if .Doc }}
+            <p>
+            {{ .Doc }}
+            </p>
+        {{ end }}
+        <pre><code>{{ .Code }}</code></pre>
+    {{ end }}
+{{ end }}
+
+{{ if .Functions }}
+    <h2>Functions</h2>
+    {{ range .Functions }}
+        <h3><code>{{ .Signature }}</code></h3>
+        {{ if .Doc }}
+            <p>
+            {{ .Doc }}
+            </p>
+        {{ end }}
+        {{ range .Examples }}
+            <h4><code>{{ .FullName }}</code></h4>
+            {{ if .Doc }}
+                <p>
+                {{ .Doc }}
+                </p>
+            {{ end }}
+            <pre><code>{{ .Code }}</code></pre>
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ if .Types }}
+    <h2>Types</h2>
+    {{ range .Types }}
+        <h3><code>{{ .Name }}</code></h3>
+        {{ if .Doc }}
+            <p>
+            {{ .Doc }}
+            </p>
+        {{ end }}
+        <pre><code>{{ .Code }}</code></pre>
+        {{ range .Examples }}
+            <h4><code>{{ .FullName }}</code></h4>
+            {{ if .Doc }}
+                <p>
+                {{ .Doc }}
+                </p>
+            {{ end }}
+            <pre><code>{{ .Code }}</code></pre>
+        {{ end }}
+
+        {{ range .Methods }}
+            <h4><code>{{ .Signature }}</code></h4>
+            {{ if .Doc }}
+                <p>
+                {{ .Doc }}
+                </p>
+            {{ end }}
+            {{ range .Examples }}
+                <h5><code>{{ .FullName }}</code></h5>
+                {{ if .Doc }}
+                    <p>
+                    {{ .Doc }}
+                    </p>
+                {{ end }}
+                <pre><code>{{ .Code }}</code></pre>
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+</body>
+</html>
