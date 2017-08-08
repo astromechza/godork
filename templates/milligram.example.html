@@ -92,14 +92,19 @@ Example_of_stuff shows an example of various random things.
     <pre><code><span class="kwd">package</span> <span class="pln">main</span>
 
 <span class="kwd">import</span> <span class="pun">(</span>
-	<span class="str">&#34;fmt&#34;</span>
 	<span class="str">&#34;github.com/AstromechZA/godork/example&#34;</span>
+	<span class="str">&#34;fmt&#34;</span>
 <span class="pun">)</span>
 
 <span class="kwd">func</span> <span class="pln">main</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">{</span>
 	<span class="pln">fmt</span><span class="pun">.</span><span class="typ">Println</span><span class="pun">(</span><span class="pln">example</span><span class="pun">.</span><span class="typ">T0</span><span class="pun">,</span> <span class="pln">example</span><span class="pun">.</span><span class="typ">T1</span><span class="pun">,</span> <span class="pln">example</span><span class="pun">.</span><span class="typ">T2</span><span class="pun">)</span>
 <span class="pun">}</span>
 </code></pre>
+    
+    Outputs:
+    <pre><code>0 1 2
+</code></pre>
+    
 
 
 <h2>Index</h2>
@@ -129,7 +134,7 @@ Example_of_stuff shows an example of various random things.
 </ul>
 
 
-    <h2><a name="constants"/>Constants</h2>
+    <h2><a name="constants"></a>Constants</h2>
     
         
             <div class="doc-paragraph"><p>
@@ -154,7 +159,7 @@ Something is a test string used in various scenarios.
 
 
 
-    <h2><a name="variables"/>Variables</h2>
+    <h2><a name="variables"></a>Variables</h2>
     
         
             <div class="doc-paragraph"><p>
@@ -181,7 +186,7 @@ not provided.
 
     <h2>Functions</h2>
     
-        <h3><a name="f_CheckSync"/><code><span class="kwd">func</span> <span class="typ">CheckSync</span><span class="pun">(</span><span class="pln">s</span> <span class="pln">realsync</span><span class="pun">.</span><span class="typ">Locker</span><span class="pun">)</span></code></h3>
+        <h3><a name="f_CheckSync"></a><code><span class="kwd">func</span> <span class="typ">CheckSync</span><span class="pun">(</span><span class="pln">s</span> <span class="pln">realsync</span><span class="pun">.</span><span class="typ">Locker</span><span class="pun">)</span></code></h3>
         
             <div class="doc-paragraph"><p>
 CheckSync locks and unlocks a lock
@@ -190,7 +195,7 @@ CheckSync locks and unlocks a lock
         
         
     
-        <h3><a name="f_GimmeBuffer"/><code><span class="kwd">func</span> <span class="typ">GimmeBuffer</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">*</span><span class="pln">bytes</span><span class="pun">.</span><span class="typ">Buffer</span></code></h3>
+        <h3><a name="f_GimmeBuffer"></a><code><span class="kwd">func</span> <span class="typ">GimmeBuffer</span><span class="pun">(</span><span class="pun">)</span> <span class="pun">*</span><span class="pln">bytes</span><span class="pun">.</span><span class="typ">Buffer</span></code></h3>
         
             <div class="doc-paragraph"><p>
 GimmeBuffer gives you a bufferino
@@ -199,7 +204,7 @@ GimmeBuffer gives you a bufferino
         
         
     
-        <h3><a name="f_TopLevelFunk"/><code><span class="kwd">func</span> <span class="typ">TopLevelFunk</span><span class="pun">(</span><span class="pln">derp</span> <span class="kwd">int</span><span class="pun">,</span> <span class="pln">names</span> <span class="pun">.</span><span class="pun">.</span><span class="pun">.</span><span class="pln">string</span><span class="pun">)</span> <span class="pln">string</span></code></h3>
+        <h3><a name="f_TopLevelFunk"></a><code><span class="kwd">func</span> <span class="typ">TopLevelFunk</span><span class="pun">(</span><span class="pln">derp</span> <span class="kwd">int</span><span class="pun">,</span> <span class="pln">names</span> <span class="pun">.</span><span class="pun">.</span><span class="pun">.</span><span class="pln">string</span><span class="pun">)</span> <span class="pln">string</span></code></h3>
         
             <div class="doc-paragraph"><p>
 TopLevelFunk takes the args and does a thing with them!
@@ -219,6 +224,11 @@ TopLevelFunk takes the args and does a thing with them!
 	<span class="pln">example</span><span class="pun">.</span><span class="typ">TopLevelFunk</span><span class="pun">(</span><span class="dec">1</span><span class="pun">,</span> <span class="str">&#34;hi&#34;</span><span class="pun">)</span>
 <span class="pun">}</span>
 </code></pre>
+            
+            Outputs:
+            <pre><code>1 [&#34;hi&#34;]
+</code></pre>
+            
         
     
 
@@ -226,7 +236,7 @@ TopLevelFunk takes the args and does a thing with them!
 
     <h2>Types</h2>
     
-        <h3><a name="t_SomeType"/><code>SomeType</code></h3>
+        <h3><a name="t_SomeType"></a><code>SomeType</code></h3>
         
             <div class="doc-paragraph"><p>
 SomeType is a struct holding the state of the example struct type.
@@ -247,7 +257,7 @@ stuff.
         
 
         
-            <h4><a name="m_PointerReceiver"/><code><span class="kwd">func</span> <span class="pun">(</span><span class="pln">s</span> <span class="pun">*</span><span class="typ">SomeType</span><span class="pun">)</span> <span class="typ">PointerReceiver</span><span class="pun">(</span><span class="pln">y</span> <span class="kwd">int</span><span class="pun">)</span></code></h4>
+            <h4><a name="m_PointerReceiver"></a><code><span class="kwd">func</span> <span class="pun">(</span><span class="pln">s</span> <span class="pun">*</span><span class="typ">SomeType</span><span class="pun">)</span> <span class="typ">PointerReceiver</span><span class="pun">(</span><span class="pln">y</span> <span class="kwd">int</span><span class="pun">)</span></code></h4>
             
                 <div class="doc-paragraph"><p>
 PointerReceiver is an example of a method with a pointer rcvr
@@ -268,9 +278,14 @@ PointerReceiver is an example of a method with a pointer rcvr
 	<span class="pln">t</span><span class="pun">.</span><span class="typ">PointerReceiver</span><span class="pun">(</span><span class="dec">1</span><span class="pun">)</span>
 <span class="pun">}</span>
 </code></pre>
+                
+                Outputs:
+                <pre><code>1
+</code></pre>
+                
             
         
-            <h4><a name="m_ValueReceiver"/><code><span class="kwd">func</span> <span class="pun">(</span><span class="pln">s</span> <span class="typ">SomeType</span><span class="pun">)</span> <span class="typ">ValueReceiver</span><span class="pun">(</span><span class="pln">x</span> <span class="kwd">int</span><span class="pun">)</span></code></h4>
+            <h4><a name="m_ValueReceiver"></a><code><span class="kwd">func</span> <span class="pun">(</span><span class="pln">s</span> <span class="typ">SomeType</span><span class="pun">)</span> <span class="typ">ValueReceiver</span><span class="pun">(</span><span class="pln">x</span> <span class="kwd">int</span><span class="pun">)</span></code></h4>
             
                 <div class="doc-paragraph"><p>
 ValueReceiver is an example of a method with a value rcvr
