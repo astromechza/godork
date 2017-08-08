@@ -9,6 +9,7 @@ type PackageDoc struct {
 	Variables   []*Variable
 	Functions   []*Function
 	Types       []*Type
+	Imports     []string
 }
 
 type Example struct {

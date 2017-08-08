@@ -84,12 +84,26 @@ func BuildExamplesForName(examples []*doc.Example, name string, fset *token.File
 }
 
 func BuildPackageDoc(importPath string, fset *token.FileSet, pkg *ast.Package) (*PackageDoc, error) {
+
 	ast.PackageExports(pkg)
+
+	seen := make(map[string]bool)
+	var imports []string
 
 	var egfiles []*ast.File
 	for _, f := range pkg.Files {
 		egfiles = append(egfiles, f)
+		for _, is := range f.Imports {
+			pps := is.Path.Value
+			_, ok := seen[pps]
+			if !ok {
+				imports = append(imports, pps)
+			}
+			seen[pps] = true
+		}
 	}
+	sort.Strings(imports)
+
 	examples := doc.Examples(egfiles...)
 	docPkg := doc.New(pkg, importPath, doc.AllDecls)
 
@@ -97,6 +111,7 @@ func BuildPackageDoc(importPath string, fset *token.FileSet, pkg *ast.Package) (
 	out.PackageName = pkg.Name
 	out.ImportPath = importPath
 	out.Doc = docPkg.Doc
+	out.Imports = imports
 	out.Examples = BuildExamplesForName(examples, "", fset)
 
 	for _, c := range docPkg.Consts {

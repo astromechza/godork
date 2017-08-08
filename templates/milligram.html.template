@@ -85,21 +85,22 @@ body {
 <h2>Index</h2>
 
 <ul class="index-links">
-    {{ if .Constants }}<ol><a href="#constants">Constants</a></ol>{{ end }}
-    {{ if .Variables }}<ol><a href="#variables">Variables</a></ol>{{ end }}
+    {{ if .Constants }}<li><a href="#constants">Constants</a></li>{{ end }}
+    {{ if .Variables }}<li><a href="#variables">Variables</a></li>{{ end }}
     {{ range .Functions }}
-        <ol><a href="#f_{{ .Name }}">{{ .Signature }}</a></ol>
+        <li><a href="#f_{{ .Name }}">{{ .Signature }}</a></li>
     {{ end }}
     {{ range .Types }}
-        <ol><a href="#t_{{ .Name }}">{{ .Name }}</a></ol>
+        <li><a href="#t_{{ .Name }}">{{ .Name }}</a></li>
         {{ if .Methods }}
             <ul>
             {{ range .Methods }}
-                <ol><a href="#m_{{ .Name }}">{{ .Signature }}</a></ol>
+                <li><a href="#m_{{ .Name }}">{{ .Signature }}</a></li>
             {{ end }}
             </ul>
         {{ end }}
     {{ end }}
+    <li><a href="#imports">Imports</a></li>
 </ul>
 
 {{ if .Constants }}
@@ -181,6 +182,18 @@ body {
             {{ end }}
         {{ end }}
     {{ end }}
+{{ end }}
+
+<h2><a name="imports"></a>Imports</h2>
+
+This package imports {{ len .Imports }} packages.
+
+{{ if .Imports }}
+<ul>
+{{ range .Imports }}
+    <li><code>{{ . }}</code></li>
+{{ end }}
+</ul>
 {{ end }}
 
 </div>
